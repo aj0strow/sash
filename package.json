@@ -1,7 +1,14 @@
 {
   "name": "sash",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "sash",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aj0strow/sash.git"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
   "devDependencies": {
     "mocha": "~1.17.1"
   }
