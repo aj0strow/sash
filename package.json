@@ -1,6 +1,7 @@
 {
   "name": "sash",
   "version": "0.0.1",
+  "license": "MIT",
   "main": "sash",
   "repository": {
     "type": "git",
@@ -11,5 +12,6 @@
   },
   "devDependencies": {
     "mocha": "~1.17.1"
-  }
+  },
+  "dependencies": {}
 }
