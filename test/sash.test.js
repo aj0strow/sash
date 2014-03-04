@@ -1,0 +1,3 @@
+describe('Sash', function () {
+
+});
