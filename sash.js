@@ -3,7 +3,9 @@ var slice = Array.prototype.slice;
 module.exports = {
 
   identity: function (x) {
-    return x;
+    return function () {
+      return x;
+    };
   },
 
   prop: function () {

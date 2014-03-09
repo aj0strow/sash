@@ -4,7 +4,9 @@ describe('Sash', function () {
     var object = {};
 
     it('should return whats passed in', function () {
-      assert.equal(object, sash.identity(object));
+      var fn = sash.identity(object);
+
+      assert.equal(object, fn());
     });
   });
 
