@@ -35,4 +35,12 @@ describe('Sash', function () {
     });
   });
 
+  describe('.slice', function () {
+    var object = { a: 'a', b: 'b', c: 'c' };
+
+    it('should return some of the props', function () {
+      var fn = sash.slice('a', 'c');
+      assert.deepEqual({ a: 'a', c: 'c' }, fn(object));
+    });
+  });
 });
