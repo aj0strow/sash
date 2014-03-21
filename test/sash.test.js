@@ -35,12 +35,21 @@ describe('Sash', function () {
     });
   });
 
-  describe('.slice', function () {
+  describe('.pick', function () {
     var object = { a: 'a', b: 'b', c: 'c' };
 
     it('should return some of the props', function () {
-      var fn = sash.slice('a', 'c');
+      var fn = sash.pick('a', 'c');
       assert.deepEqual({ a: 'a', c: 'c' }, fn(object));
+    });
+  });
+
+  describe('.squish', function () {
+    var string = '  hello \n    world';
+
+    it('should return the string without whitespace', function () {
+      var fn = sash.squish;
+      assert.equal('hello world', fn(string));
     });
   });
 });

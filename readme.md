@@ -1,6 +1,6 @@
 # Sash
 
-Sash is a more refined alternative to ulility belt libraries such as underscore, lodash, mout, and many more. Sash emphasizes composing higher-order expressions instead of pollyfilling javascript objects, which works especially well when dealing with promises. 
+Sash is a more refined alternative to ulility belt libraries such as underscore, lodash, mout, and many more. Sash emphasizes composing higher-order expressions instead of pollyfilling javascript objects, which works especially well when dealing with promises and arrays. 
 
 ```
 $ npm install sash --save
@@ -8,27 +8,41 @@ $ npm install sash --save
 
 ### API
 
-All functions are higher-order, returning a function.
+Most functions are higher-order, returning another function.
+
+#### identity
+
+Always return the same value, no matter the input.
 
 ```javascript
-// sash.identity
+var me = sash.identity('AJ')
+[ 1, 2 ].map(me) == [ 'AJ', 'AJ' ]
+```
 
-var greeting = sash.identity('hello');
-greeting() == 'hello'
+#### prop
 
+Try to follow a path of property keys through a json object. Useful for working with external APIs. 
 
-// sash.prop
-
-var json = { data: [ { x: 5, y: 10 } ] };
+```javascript
 var getX = sash.prop('data', 0, 'x');
-getX(json) == 5
+getX({ data: [ { x: 5, y: 10 } ] }) == 5
+```
 
+#### pick
 
-// sash.slice
+Pick properties from an object. 
 
-var json = { lots: {}, of: {}, extra: {}, keys: {}, status: 200, data: [] };
-var useful = sash.slice('status', 'data');
-useful(json) == { status: 200, data: [] }
+```javascript
+var present = sash.pick('id', 'name');
+present({ id: 5, name: 'AJ', age: 20 }) == { id: 5, name: 'AJ' }
+```
+
+#### squish
+
+Trim the string and replace whitespace with one space. 
+
+```javascript
+sash.squish('   hello  world ') == 'hello world'
 ```
 
 ### Notes

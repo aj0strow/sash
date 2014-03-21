@@ -16,13 +16,19 @@ module.exports = {
     };
   },
 
-  slice: function () {
+  pick: function () {
     var keys = slice.call(arguments);
     return function (object) {
       return keys.reduce(function (newObject, key) {
         newObject[key] = object[key];
         return newObject;
       }, {});
+    };
+  },
+
+  get squish () {
+    return function (string) {
+      return string.trim().replace(/\s+/, ' ');
     };
   }
 
