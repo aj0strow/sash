@@ -1,11 +1,14 @@
 describe('Sash', function () {
+  it('should be a noop', function () {
+    var object = {};
+    assert.equal(object, sash(object));
+  });
 
   describe('.identity', function () {
     var object = {};
 
     it('should return whats passed in', function () {
       var fn = sash.identity(object);
-
       assert.equal(object, fn());
     });
   });
@@ -50,6 +53,15 @@ describe('Sash', function () {
     it('should return the string without whitespace', function () {
       var fn = sash.squish;
       assert.equal('hello world', fn(string));
+    });
+  });
+
+  describe('chaining', function () {
+    var object = { a: '  a ' };
+
+    it('should work', function () {
+      var fn = sash.prop('a').squish;
+      assert.equal('a', fn(object));
     });
   });
 });

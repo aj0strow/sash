@@ -1,6 +1,6 @@
 {
   "name": "sash",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "main": "sash",
   "repository": {
@@ -13,5 +13,7 @@
   "devDependencies": {
     "mocha": "~1.17.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "merge-descriptors": "0.0.2"
+  }
 }

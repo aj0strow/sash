@@ -1,35 +1,47 @@
+var mergeDescriptors = require('merge-descriptors');
 var slice = Array.prototype.slice;
 
-module.exports = {
+var methods = {
 
-  identity: function (x) {
-    return function () { return x; };
+  identity: function (input) {
+    return compose (this, function () { return input; });
   },
 
   prop: function () {
     var keys = slice.call(arguments);
-    return function (object) {
+    return compose(this, function (input) {
       return keys.reduce(function (object, key) {
         if (object === null || object === undefined) return undefined;
         return object[key];
-      }, object);
-    };
+      }, input);
+    });
   },
 
   pick: function () {
     var keys = slice.call(arguments);
-    return function (object) {
-      return keys.reduce(function (newObject, key) {
-        newObject[key] = object[key];
-        return newObject;
+    return compose(this, function (input) {
+      return keys.reduce(function (object, key) {
+        object[key] = input[key];
+        return object;
       }, {});
-    };
+    });
   },
 
   get squish () {
-    return function (string) {
+    return compose(this, function (string) {
       return string.trim().replace(/\s+/, ' ');
-    };
+    });
   }
 
 };
+
+function compose (prev, next) {
+  return sash(function (input) { return next(prev(input)); });
+}
+
+function sash (func) {
+  return mergeDescriptors(func.bind(func), methods);
+}
+
+function noop (x) { return x; }
+module.exports = sash(noop);

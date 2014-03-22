@@ -8,7 +8,7 @@ $ npm install sash --save
 
 ### API
 
-Most functions are higher-order, returning another function.
+As a rule, methods that take arguments are functions, methods that do not take methods are properties.
 
 #### identity
 
@@ -43,6 +43,16 @@ Trim the string and replace whitespace with one space.
 
 ```javascript
 sash.squish('   hello  world ') == 'hello world'
+```
+
+### Chaining
+
+All sash functions and property functions can be chained which pipes the output of the first to the next function.
+
+```javascript
+var object = { input: '  messy ' };
+var getName = sash.prop('input').squish;
+getName(object) == 'messy'
 ```
 
 ### Notes
