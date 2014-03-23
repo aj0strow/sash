@@ -28,13 +28,16 @@ var getX = sash.prop('data', 0, 'x');
 getX({ data: [ { x: 5, y: 10 } ] }) == 5
 ```
 
-#### pick
+#### pick & omit
 
 Pick properties from an object. 
 
 ```javascript
 var present = sash.pick('id', 'name');
 present({ id: 5, name: 'AJ', age: 20 }) == { id: 5, name: 'AJ' }
+
+var present = sash.omit('password');
+present({ id: 5, password: 'secret stuff' }) == { id: 5 }
 ```
 
 #### squish

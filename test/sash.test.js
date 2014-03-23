@@ -47,6 +47,15 @@ describe('Sash', function () {
     });
   });
 
+  describe('.omit', function () {
+    var object = { a: 'a', b: 'b', c: 'c' };
+
+    it('should omit some props', function () {
+      var fn = sash.omit('a', 'c');
+      assert.deepEqual({ b: 'b' }, fn(object));
+    });
+  });
+
   describe('.squish', function () {
     var string = '  hello \n    world';
 

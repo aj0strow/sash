@@ -4,7 +4,7 @@ var slice = Array.prototype.slice;
 var methods = {
 
   identity: function (input) {
-    return compose (this, function () { return input; });
+    return compose(this, function () { return input; });
   },
 
   prop: function () {
@@ -22,6 +22,19 @@ var methods = {
     return compose(this, function (input) {
       return keys.reduce(function (object, key) {
         object[key] = input[key];
+        return object;
+      }, {});
+    });
+  },
+
+  omit: function () {
+    var omitted = slice.call(arguments).reduce(function (object, key) {
+      object[key] = true;
+      return object;
+    }, {});
+    return compose(this, function (input) {
+      return Object.keys(input).reduce(function (object, key) {
+        if (! omitted[key]) object[key] = input[key];
         return object;
       }, {});
     });
